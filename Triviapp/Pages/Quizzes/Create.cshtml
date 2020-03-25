@@ -1,0 +1,44 @@
+﻿@page
+@model Triviapp.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Quiz.Title" class="control-label"></label>
+                <input asp-for="Quiz.Title" class="form-control" />
+                <span asp-validation-for="Quiz.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.Category" class="control-label"></label>
+                <input asp-for="Quiz.Category" class="form-control" />
+                <span asp-validation-for="Quiz.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.DateAdded" class="control-label"></label>
+                <input asp-for="Quiz.DateAdded" class="form-control" />
+                <span asp-validation-for="Quiz.DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Browse">Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

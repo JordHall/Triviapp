@@ -1,0 +1,48 @@
+﻿@page
+@model Triviapp.BrowseModel
+
+@{
+    ViewData["Title"] = "Browse";
+}
+
+<h1>Browse</h1>
+
+<p>
+    <a asp-page="Create">Create Quiz</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quiz[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quiz[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quiz[0].DateAdded)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Quiz) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdded)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
