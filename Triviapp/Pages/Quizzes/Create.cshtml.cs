@@ -31,15 +31,19 @@ namespace Triviapp
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            //Quiz data validation failure
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            //Quiz date validation success
+            //Binds current date
+            Quiz.DateAdded = DateTime.Today;
             _context.Quizzes.Add(Quiz);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Quizzes/Browse");
         }
     }
 }
