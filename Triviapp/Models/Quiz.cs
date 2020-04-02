@@ -12,7 +12,7 @@ namespace Triviapp.Models
         public int ID { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
-        public ICollection<Question> Questions { get; set; }
+        public IList<Question> Questions { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Date Added")]

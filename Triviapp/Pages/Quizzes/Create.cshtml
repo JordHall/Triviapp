@@ -23,9 +23,30 @@
                 <input asp-for="Quiz.Category" class="form-control" />
                 <span asp-validation-for="Quiz.Category" class="text-danger"></span>
             </div>
+
+            <!-- Create Question Scaffold -->
+            <div class="form-group">
+                <label asp-for="Quiz.Questions[0].Title" class="control-label"></label>
+                <input asp-for="Quiz.Questions[0].Title" class="form-control" />
+                <span asp-validation-for="Quiz.Questions[0].Title" class="text-danger"></span>
+            </div>
+
+            <!-- Create Answer Scaffold -->
+            <div class="form-group">
+                <label asp-for="Quiz.Questions[0].Answers[0].Title" class="control-label"></label>
+                <input asp-for="Quiz.Questions[0].Answers[0].Title" class="form-control" />
+                <span asp-validation-for="Quiz.Questions[0].Answers[0].Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.Questions[0].Answers[0].IsCorrect" class="control-label"></label>
+                <input asp-for="Quiz.Questions[0].Answers[0].IsCorrect" class="form-control" />
+                <span asp-validation-for="Quiz.Questions[0].Answers[0].IsCorrect" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+
         </form>
     </div>
 </div>
