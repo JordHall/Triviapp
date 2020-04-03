@@ -13,10 +13,16 @@ namespace Triviapp
     public class CreateModel : PageModel
     {
         private readonly Triviapp.Data.TriviappContext _context;
+        public int numOfAnswers = 2;
 
         public CreateModel(Triviapp.Data.TriviappContext context)
         {
             _context = context;
+        }
+
+        public void AddAnswer()
+        {
+            numOfAnswers++;
         }
 
         public IActionResult OnGet()

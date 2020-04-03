@@ -22,18 +22,20 @@
                 <span asp-validation-for="Quiz.Category" class="text-danger"></span>
             </div>
 
-                <!-- Create Question Scaffold -->
-                <div class="form-group">
-                    <label asp-for="Quiz.Questions[0].Title" class="control-label"></label>
-                    <input asp-for="Quiz.Questions[0].Title" class="form-control" />
-                    <span asp-validation-for="Quiz.Questions[0].Title" class="text-danger"></span>
-                </div>
+            <!-- Create Question Scaffold -->
+            <div class="form-group">
+                <label asp-for="Quiz.Questions[0].Title" class="control-label"></label>
+                <input asp-for="Quiz.Questions[0].Title" class="form-control" />
+                <span asp-validation-for="Quiz.Questions[0].Title" class="text-danger"></span>
+            </div>
 
+            @for (int i = 0; i < Model.numOfAnswers; i++)
+            {
                 <div class="row">
                     <!-- Create Answer Scaffold -->
                     <div class="col-10">
                         <div class="form-group">
-                            <label asp-for="Quiz.Questions[0].Answers[0].Title" class="control-label"></label>
+                            <label asp-for="Quiz.Questions[0].Answers[0].Title" class="control-label"></label> @((i + 1).ToString())
                             <input asp-for="Quiz.Questions[0].Answers[0].Title" class="form-control" />
                             <span asp-validation-for="Quiz.Questions[0].Answers[0].Title" class="text-danger"></span>
                         </div>
@@ -46,11 +48,18 @@
                         </div>
                     </div>
                 </div>
+            }
 
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-</form>
+            <!-- UNFINISHED ADD ANSWER FUNCTIONALITY -->
+            <div class="form-group">
+                <input type="button" onclick="AddAnswer" value="Add answer" class="btn btn-primary" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
     </div>
 </div>
 
