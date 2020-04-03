@@ -12,6 +12,7 @@ namespace Triviapp.Models
 
         [Display(Name = "Answer")]
         public string Title { get; set; }
+        [Display(Name = "Correct")]
         public bool IsCorrect { get; set; }
         public int QuestionID { get; set; }
         public Question Question { get; set; }
