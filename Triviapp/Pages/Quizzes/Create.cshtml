@@ -8,58 +8,64 @@
 <h1>Create New Quiz</h1>
 <hr />
 <div class="row">
-    <div class="col-md-6">
+    <div class="col">
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Quiz.Title" class="control-label"></label>
-                <input asp-for="Quiz.Title" class="form-control" />
-                <span asp-validation-for="Quiz.Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quiz.Category" class="control-label"></label>
-                <input asp-for="Quiz.Category" class="form-control" />
-                <span asp-validation-for="Quiz.Category" class="text-danger"></span>
+            <div class="col-md-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Quiz.Title" class="control-label"></label>
+                    <input asp-for="Quiz.Title" class="form-control" />
+                    <span asp-validation-for="Quiz.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quiz.Category" class="control-label"></label>
+                    <input asp-for="Quiz.Category" class="form-control" />
+                    <span asp-validation-for="Quiz.Category" class="text-danger"></span>
+                </div>
             </div>
 
             <!-- Create Question Scaffold -->
-            <div class="form-group">
-                <label asp-for="Quiz.Questions[0].Title" class="control-label"></label>
-                <input asp-for="Quiz.Questions[0].Title" class="form-control" />
-                <span asp-validation-for="Quiz.Questions[0].Title" class="text-danger"></span>
-            </div>
-
-            @for (int i = 0; i < Model.numOfAnswers; i++)
+            @for (int k = 0; k < Model.numOfQuestions; k++)
             {
-                <div class="row">
-                    <!-- Create Answer Scaffold -->
-                    <div class="col-10">
-                        <div class="form-group">
-                            <label asp-for="Quiz.Questions[0].Answers[0].Title" class="control-label"></label> @((i + 1).ToString())
-                            <input asp-for="Quiz.Questions[0].Answers[0].Title" class="form-control" />
-                            <span asp-validation-for="Quiz.Questions[0].Answers[0].Title" class="text-danger"></span>
-                        </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Quiz.Questions[k].Title" class="control-label"></label> @((k + 1).ToString())
+                        <input asp-for="Quiz.Questions[k].Title" class="form-control" />
+                        <span asp-validation-for="Quiz.Questions[k].Title" class="text-danger"></span>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label asp-for="Quiz.Questions[0].Answers[0].IsCorrect" class="control-label"></label>
-                            <input asp-for="Quiz.Questions[0].Answers[0].IsCorrect" class="form-control" />
-                            <span asp-validation-for="Quiz.Questions[0].Answers[0].IsCorrect" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-            }
 
-            <!-- UNFINISHED ADD ANSWER FUNCTIONALITY -->
+                    <!-- Create Answer Scaffold -->
+                    @for (int i = 0; i < Model.numOfAnswers; i++)
+                    {
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="form-group">
+                                    <label asp-for="Quiz.Questions[k].Answers[i].Title" class="control-label"></label> @((i + 1).ToString())
+                                    <input asp-for="Quiz.Questions[k].Answers[i].Title" class="form-control" />
+                                    <span asp-validation-for="Quiz.Questions[k].Answers[i].Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label asp-for="Quiz.Questions[k].Answers[i].IsCorrect" class="control-label"></label>
+                                    <input asp-for="Quiz.Questions[k].Answers[i].IsCorrect" class="form-control" />
+                                    <span asp-validation-for="Quiz.Questions[k].Answers[i].IsCorrect" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+             }
+
+                    <!-- UNFINISHED ADD ANSWER FUNCTIONALITY
             <div class="form-group">
                 <input type="button" onclick="AddAnswer" value="Add answer" class="btn btn-primary" />
-            </div>
+            </div> -->
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-
-        </form>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+            </form>
     </div>
 </div>
 
