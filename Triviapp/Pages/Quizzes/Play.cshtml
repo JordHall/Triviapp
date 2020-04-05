@@ -1,0 +1,47 @@
+﻿@page
+@model Triviapp.PlayModel
+
+@{
+    ViewData["Title"] = "Play";
+}
+
+<h1>Play</h1>
+
+<div>
+    <h4>Quiz</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.DateAdded)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quiz.DateAdded)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Quiz.Questions)
+        </dt>
+        @foreach (var q in Model.Quiz.Questions)
+        {
+            <dd class="col-sm-10">
+                @q.Title <!-- NEEDS FIXING -->
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Quiz.ID">Edit</a> |
+    <a asp-page="Browse">Back to List</a>
+</div>
