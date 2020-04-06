@@ -27,8 +27,17 @@ namespace Triviapp
             {
                 return NotFound();
             }
-
+            //Get Quiz with the passed ID and store locally
             Quiz = await _context.Quizzes.FirstOrDefaultAsync(m => m.ID == id);
+
+            //Get the Questions from this Quiz and store into its list
+            Quiz.Questions = await _context.Questions.Where(q => q.QuizID == id).ToListAsync();
+
+            //Get each Questions Answers and store them into their lists
+            foreach (var item in Quiz.Questions)
+            {
+                item.Answers = await _context.Answers.Where(a => a.QuestionID == item.ID).ToListAsync();
+            }
 
             if (Quiz == null)
             {
