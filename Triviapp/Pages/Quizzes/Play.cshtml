@@ -6,46 +6,42 @@
 }
 
 <h1>@Html.DisplayFor(model => model.Quiz.Title)</h1>
-
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quiz.Category)
-        </dt>
-        <dd class="col-sm-10">
+<div class="row ">
+    <div class="col-md-4">
+        <span style="width:auto; height:auto; background-color:darkblue; color:#ffffff; padding:2px;">
             @Html.DisplayFor(model => model.Quiz.Category)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quiz.DateAdded)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quiz.DateAdded)
-        </dd>
-    </dl>
+        </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 font-weight-bold">
+        @Html.DisplayNameFor(model => model.Quiz.DateAdded):
+    </div>
+    <div class="col-md-2">
+        @Html.DisplayFor(model => model.Quiz.DateAdded)
+    </div>
+</div>
+<hr />
+<div class="row text-lg-center justify-content-lg-center">
         @foreach (var item in Model.Quiz.Questions)
         {
-            <div class="questionContainer">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        Question
-                    </dt>
-                    <dd class="col-sm-10">
-                        @item.Title
-                    </dd>
-                </dl>
-                <dl class="row">
-                    @foreach (var answItem in item.Answers)
-                    {
-                        <dt class="col-sm-3">
-                            @answItem.Title
-                        </dt>
-                    }
-                </dl>
+        <div class="col-lg-6" style="border:1px solid black; border-radius: 6px;">
+            <div class="col-sm" style="padding: 1em;">
+                @item.Title
             </div>
+            <div class="row">
+                @foreach (var answItem in item.Answers)
+                {
+                    <div class="col-sm-6" style="border: 1px solid black; border-radius: 6px; padding: 1em;">
+                        @answItem.Title
+                    </div>
+                }
+            </div>
+        </div>
         }
 </div>
+<hr />
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Quiz.ID">Edit</a> |
-    <a asp-page="Browse">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Quiz.ID">Edit</a>
+    <a asp-page="Browse" class="btn btn-primary">Quit</a>
 </div>
