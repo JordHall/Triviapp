@@ -1,4 +1,30 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var startButton = document.getElementById("start-btn")
+var questionContainer = document.getElementById("question-container")
+var questionElment = document.getElementById("question")
+var answerButtonsElment = document.getElementById("answer-buttons")
+let  shuffledQuestions, currentQuestionIndex
 
-// Write your Javascript code.
+startButton.addEventListener("click", startQuiz)
+
+
+
+
+function startQuiz() {
+    startButton.classList.add("hide")
+    shuffledQuestions = questionArray.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainer.classList.remove("hide")
+    setNextQuestion()
+}
+
+function setNextQuestion() {
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+
+function showQuestion(question) {
+    questionElment.innerText = question.question
+}
+
+function selectAnswer() {
+    
+}
