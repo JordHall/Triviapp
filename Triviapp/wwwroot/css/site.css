@@ -70,13 +70,6 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-.answer-btn {
-    border: 1px solid black;
-    border-radius: 6px;
-    padding: 1em;
-    background-color: brown;
-}
-
 #container {
     border: 1px solid black;
     border-radius: 6px;
@@ -85,7 +78,7 @@ body {
     padding: 10px;
     width: 800px;
     max-width: 80%;
-    min-height: 200px;
+    height: 100%;
     font-size: xx-large;
 }
 
@@ -117,7 +110,7 @@ body {
 }
 
 .btn-answer {
-    background-color: cornflowerblue;
+    background-color: #1b6ec2;
     border: 2px solid #7d7d7d;
     border-radius: 5px;
     padding: 5px 10px;
