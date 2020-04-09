@@ -145,8 +145,21 @@
 </div>
 
 <script>
-    var questionArray = [question, answers[title, correct]];
-    @foreach (var question in Model.Quiz.Questions)
+    var questionClass = class {
+        constructor(title, text, correct) {
+            this.title = title;
+            this.answers = [text, correct];
+        }
+    }
+
+    var questionArray = [];
+
+    //var person = {firstName:"John", lastName:"Doe", age:46};
+
+    // var questionArray = [question, answers[text, correct]];
+
+
+    @*@foreach (var question in Model.Quiz.Questions)
     {
         @:questionArray.question.push("@question.Title");
         @foreach (var answer in question.Answers)
@@ -154,14 +167,7 @@
             @:questionArray.answers.text.push("@answer.Title");
             @:questionArray.answers.correct.push("@answer.IsCorrect");
         }
-    }
+    }*@
 
-    var myArr= [];
-
-    @for(int i= 0;i<10;i++){
-
-    <text>myArr.push(@i);</text>
-
-    }
 </script>
 <script src="~/js/site.js" type="text/javascript"></script>
