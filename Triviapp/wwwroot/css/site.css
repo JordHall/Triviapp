@@ -69,3 +69,77 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.answer-btn {
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 1em;
+    background-color: brown;
+}
+
+#container {
+    border: 1px solid black;
+    border-radius: 6px;
+    box-shadow: 0 0 10px 2px;
+    background-color: #e3e3e3;
+    padding: 10px;
+    width: 800px;
+    max-width: 80%;
+    min-height: 200px;
+    font-size: xx-large;
+}
+
+.question-row {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 20px 0 20px 0;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 20px;
+    margin: 20px 0;
+    outline: none;
+}
+
+.btn-answer:hover {
+    border-color: black;
+}
+
+.btn-answer.correct {
+    background-color: seagreen;
+}
+
+.btn-answer.wrong {
+    background-color: darkred;
+}
+
+.btn-answer {
+    background-color: cornflowerblue;
+    border: 2px solid #7d7d7d;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+}
+
+.start-btn, .next-btn {
+    font-size: 1.5rem;
+    background-color: deepskyblue;
+    border: 2px solid #7d7d7d;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    padding 10px 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.hide {
+    display: none;
+}
