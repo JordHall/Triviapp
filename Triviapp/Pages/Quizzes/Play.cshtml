@@ -6,7 +6,9 @@
 }
 <!--QUIZ INFORMATION-->
 <div class="col-lg-10">
+    <!--TITLE-->
     <h1>@Html.DisplayFor(model => model.Quiz.Title)</h1>
+    <!--CATEGORY-->
     <div class="row ">
         <div class="col-md-4">
             <span style="width:auto; height:auto; background-color:darkblue; color:#ffffff; padding:2px;">
@@ -14,6 +16,7 @@
             </span>
         </div>
     </div>
+    <!--DATE ADDED-->
     <div class="row">
         <div class="col-md-2 font-weight-bold">
             @Html.DisplayNameFor(model => model.Quiz.DateAdded):
@@ -22,12 +25,14 @@
             @Html.DisplayFor(model => model.Quiz.DateAdded)
         </div>
     </div>
+    <!--SCORE TICKER-->
     <span id="scoreSpan">Score: 0</span>
 </div>
 <hr />
 <!--QUIZ CONTAINER-->
 <div class="row question-row text-lg-center">
     <div id="container" class="bg-dark text-white">
+        <!--QUESTIONS-->
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
@@ -37,6 +42,11 @@
                 <button class="btn-answer"></button>
             </div>
         </div>
+        <!--END SCREEN-->
+        <div id="completed-container" class="hide">
+            <h2 id="score"></h2>
+        </div>
+        <!--CONTROLS-->
         <div class="controls">
             <button id="start-btn" class="start-btn">Start</button>
             <button id="next-btn" class="next-btn hide">Next</button>

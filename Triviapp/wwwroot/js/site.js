@@ -8,14 +8,15 @@ const scoreSpan = document.getElementById("scoreSpan") // SCORE ELEMENT
 let shuffledQuestions, currentQuestionIndex
 let score = 0
 
-//Start Quiz on click
+//START QUIZ ON CLICK
 startButton.addEventListener("click", startQuiz)
+//NEXT QUESTION
 nextButton.addEventListener("click", () => {
     currentQuestionIndex++
     setNextQuestion()
 })
 
-//QUIZ START
+//START QUIZ
 function startQuiz() {
     score = 0
     updateScore()
@@ -26,7 +27,7 @@ function startQuiz() {
     setNextQuestion()
 }
 
-//GET NEXT QUESTION
+//NEXT QUESTION
 function setNextQuestion() {
     reset()
     showQuestion(shuffledQuestions[currentQuestionIndex])
@@ -39,9 +40,11 @@ function showQuestion(question) {
         const button = document.createElement("button")
         button.innerText = answer.text
         button.classList.add("btn-answer")
+        //SET ANSWER TO CORRECT
         if (answer.correct) {
             button.dataset.correct = answer.correct
         }
+        //RUN SELECT ANSWER ON CLICK
         button.addEventListener("click", selectAnswer)
         answerButtonsElment.appendChild(button)
     })
@@ -50,6 +53,7 @@ function showQuestion(question) {
 //RESET BUTTONS
 function reset() {
     nextButton.classList.add("hide")
+    clearStatusClass(document.body)
     while (answerButtonsElment.firstChild) {
         answerButtonsElment.removeChild(answerButtonsElment.firstChild)
     }
@@ -76,7 +80,7 @@ function selectAnswer(a) {
     }
 }
 
-//SET ANSWER CLASSES
+//SET ANSWER STATUS
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -86,7 +90,7 @@ function setStatusClass(element, correct) {
     }
 }
 
-//REMOVE ANSWER CLASSES
+//REMOVE ANSWER STATUS
 function clearStatusClass(element) {
     element.classList.remove("correct")
     element.classList.remove("wrong")

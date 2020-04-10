@@ -4,22 +4,26 @@
 @{
     ViewData["Title"] = "Create Quiz";
 }
+<!--TITLE CONTAINER-->
 <div class="row">
     <div class="col-11">
         <h1>Create New Quiz</h1>
     </div>
     <div class="col-1">
         <div>
+            <!--BACK-->
             <a asp-page="Browse" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>
 <hr />
+<!--CREATE FORM CONTAINER-->
 <div class="row">
     <div class="col">
         <form method="post">
             <div class="row">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <!--TITLE-->
                 <div class="col-md-8">
                     <div class="form-group">
                         <h3>Title</h3>
@@ -27,6 +31,7 @@
                         <span asp-validation-for="Quiz.Title" class="text-danger"></span>
                     </div>
                 </div>
+                <!--CATEGORY-->
                 <div class="col-md-4">
                     <div class="form-group">
                         <h3>Category</h3>
@@ -37,7 +42,7 @@
             </div>
             <hr />
             <div class="row">
-                <!-- Create Question Scaffold -->
+                <!--QUESTION SCAFFOLDER-->
                 @for (int k = 0; k < Model.numOfQuestions; k++)
                 {
                     <div class="col-md-5 bg-dark text-white" style="border: 1px solid #a1a1a1; margin: 40px; padding: 10px;">
@@ -46,10 +51,11 @@
                             <input asp-for="Quiz.Questions[k].Title" class="form-control" />
                             <span asp-validation-for="Quiz.Questions[k].Title" class="text-danger"></span>
                         </div>
-                        <!-- Create Answer Scaffold -->
+                        <!--ANSWER SCAFFOLDER-->
                         @for (int i = 0; i < Model.numOfAnswers; i++)
                         {
                             <div class="row">
+                                <!--ANSWER TITLE-->
                                 <div class="col-10">
                                     <div class="form-group">
                                         <label asp-for="Quiz.Questions[k].Answers[i].Title" class="control-label"></label> @((i + 1).ToString())
@@ -57,6 +63,7 @@
                                         <span asp-validation-for="Quiz.Questions[k].Answers[i].Title" class="text-danger"></span>
                                     </div>
                                 </div>
+                                <!--IS ANSWER CORRECT-->
                                 <div class="col-2">
                                     <div class="form-group">
                                         <label asp-for="Quiz.Questions[k].Answers[i].IsCorrect" class="control-label"></label>
@@ -74,6 +81,7 @@
             <div class="form-group">
                 <input type="button" onclick="AddAnswer" value="Add answer" class="btn btn-primary" />
             </div> -->
+            <!--SUBMIT-->
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
