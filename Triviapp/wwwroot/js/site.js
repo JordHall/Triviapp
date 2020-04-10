@@ -1,5 +1,6 @@
 ﻿const startButton = document.getElementById("start-btn") //START BUTTON
 const nextButton = document.getElementById("next-btn") //NEXT BUTTON
+const quitButton = document.getElementById("quit-btn") //QUIT BUTTON
 const questionContainer = document.getElementById("question-container") //QUESTION CONTAINER
 const questionElment = document.getElementById("question") //QUESTION TITLE
 const answerButtonsElment = document.getElementById("answer-buttons") //ANSWER BUTTONS
@@ -69,8 +70,9 @@ function selectAnswer(a) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove("hide")
     } else {
-        startButton.innerText = "Restart"
+        startButton.innerText = "Restart" //END GAME LOGIC
         startButton.classList.remove("hide")
+        quitButton.classList.remove("hide")
     }
 }
 
