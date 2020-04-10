@@ -40,7 +40,7 @@
                 <!-- Create Question Scaffold -->
                 @for (int k = 0; k < Model.numOfQuestions; k++)
                 {
-                    <div class="col-md-5" style="border: 1px solid #a1a1a1; margin: 40px; padding: 10px;">
+                    <div class="col-md-5 bg-dark text-white" style="border: 1px solid #a1a1a1; margin: 40px; padding: 10px;">
                         <div class="form-group">
                             <h3>Question @((k + 1).ToString())</h3>
                             <input asp-for="Quiz.Questions[k].Title" class="form-control" />
