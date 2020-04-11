@@ -5,6 +5,7 @@ const questionContainer = document.getElementById("question-container") //QUESTI
 const questionElment = document.getElementById("question") //QUESTION TITLE
 const answerButtonsElment = document.getElementById("answer-buttons") //ANSWER BUTTONS
 const scoreSpan = document.getElementById("scoreSpan") // SCORE ELEMENT
+
 let shuffledQuestions, currentQuestionIndex
 let score = 0
 
