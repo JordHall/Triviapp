@@ -5,25 +5,31 @@
     ViewData["Title"] = "Play";
 }
 <!--QUIZ INFORMATION-->
-<div class="col-lg-10">
-    <!--TITLE-->
-    <h1>@Html.DisplayFor(model => model.Quiz.Title)</h1>
-    <!--CATEGORY-->
-    <div class="row ">
-        <div class="col-md-4">
-            <span style="width:auto; height:auto; background-color:darkblue; color:#ffffff; padding:2px;">
-                @Html.DisplayFor(model => model.Quiz.Category)
-            </span>
+<div class="row">
+    <div class="col-sm-11">
+        <!--TITLE-->
+        <h1>@Html.DisplayFor(model => model.Quiz.Title)</h1>
+        <!--CATEGORY-->
+        <div class="row">
+            <h3 style="margin-left: 20px;">
+                <span class="badge badge-warning">
+                    @Html.DisplayFor(model => model.Quiz.Category)
+                </span>
+            </h3>
+        </div>
+        <!--DATE ADDED-->
+        <div class="row">
+            <div class="col-2 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Quiz.DateAdded):
+            </div>
+            <div class="col-2">
+                @Html.DisplayFor(model => model.Quiz.DateAdded)
+            </div>
         </div>
     </div>
-    <!--DATE ADDED-->
-    <div class="row">
-        <div class="col-md-2 font-weight-bold">
-            @Html.DisplayNameFor(model => model.Quiz.DateAdded):
-        </div>
-        <div class="col-md-2">
-            @Html.DisplayFor(model => model.Quiz.DateAdded)
-        </div>
+    <!--QUIT-->
+    <div class="col-1 float-right">
+        <a asp-page="Browse" class="btn btn-primary">Quit</a>
     </div>
 </div>
 <hr />
@@ -46,15 +52,12 @@
             </div>
         </div>
         <!--CONTROLS-->
-        <div class="controls">
-            <button id="start-btn" class="start-btn">Start</button>
-            <button id="next-btn" class="next-btn hide">Next</button>
-            <button id="quit-btn" class="quit-btn hide" asp-page="Browse">Quit</button>
+        <div id="controls">
+            <button id="start-btn" class="start-btn control-btn">Start</button>
+            <button id="next-btn" class="next-btn hide control-btn">Next</button>
+            <button id="quit-btn" class="quit-btn hide control-btn" asp-page="Browse">Quit</button>
         </div>
     </div>
-</div>
-<div class="col-lg-2 float-right">
-    <a asp-page="Browse" class="btn btn-primary">Quit</a>
 </div>
 <!--SCRIPT FOR EXTRACTING C# MODEL DATA INTO JAVASCRIPT 2D ARRAY-->
 <script>

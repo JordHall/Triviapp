@@ -7,7 +7,6 @@ const answerButtonsElment = document.getElementById("answer-buttons") //ANSWER B
 const completedContainer = document.getElementById("completed-container") //END GAME CONTAINER
 const scoreElement = document.getElementById("score") //SCORE ELEMENT
 const scoreTitle = document.getElementById("scoreTitle") //SCORE TITLE
-const controls = document.getElementById("controls") //CONTROLS
 
 let shuffledQuestions, currentQuestionIndex
 let score = 0

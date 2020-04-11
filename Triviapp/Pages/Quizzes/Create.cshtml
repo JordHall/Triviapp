@@ -4,6 +4,17 @@
 @{
     ViewData["Title"] = "Create Quiz";
 }
+<!--STYLING-->
+<style>
+    .form-group {
+        margin: 1em;
+        filter: drop-shadow(0 2px 5px black);
+    }
+    .bg-dark {
+        border-radius: 5px;
+        filter: drop-shadow(0 5px 10px black);
+    }
+</style>
 <!--TITLE CONTAINER-->
 <div class="row">
     <div class="col-11">
@@ -24,7 +35,7 @@
             <div class="row">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <!--TITLE-->
-                <div class="col-md-8">
+                <div class="col-md-8 bg-dark text-white">
                     <div class="form-group">
                         <h3>Title</h3>
                         <input asp-for="Quiz.Title" class="form-control" />
@@ -32,7 +43,7 @@
                     </div>
                 </div>
                 <!--CATEGORY-->
-                <div class="col-md-4">
+                <div class="col-md-4 bg-dark text-white">
                     <div class="form-group">
                         <h3>Category</h3>
                         <input asp-for="Quiz.Category" class="form-control" />
@@ -45,7 +56,7 @@
                 <!--QUESTION SCAFFOLDER-->
                 @for (int k = 0; k < Model.numOfQuestions; k++)
                 {
-                    <div class="col-md-5 bg-dark text-white" style="border: 1px solid #a1a1a1; margin: 40px; padding: 10px;">
+                    <div class="col-md-5 bg-dark text-white" style="margin: 40px; padding: 10px;">
                         <div class="form-group">
                             <h3>Question @((k + 1).ToString())</h3>
                             <input asp-for="Quiz.Questions[k].Title" class="form-control" />
@@ -56,7 +67,7 @@
                         {
                             <div class="row">
                                 <!--ANSWER TITLE-->
-                                <div class="col-10">
+                                <div class="col-9">
                                     <div class="form-group">
                                         <label asp-for="Quiz.Questions[k].Answers[i].Title" class="control-label"></label> @((i + 1).ToString())
                                         <input asp-for="Quiz.Questions[k].Answers[i].Title" class="form-control" />
@@ -64,7 +75,7 @@
                                     </div>
                                 </div>
                                 <!--IS ANSWER CORRECT-->
-                                <div class="col-2">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label asp-for="Quiz.Questions[k].Answers[i].IsCorrect" class="control-label"></label>
                                         <input asp-for="Quiz.Questions[k].Answers[i].IsCorrect" class="form-control" />

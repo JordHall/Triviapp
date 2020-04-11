@@ -4,11 +4,24 @@
     ViewData["Title"] = "Home page";
 }
 
-    <div class="text-center">
+<!--LANDING PAGE-->
+<div class="text-center">
+    <div id="landing-container">
+        <!--LOGO-->
         <img src="~/triviapp_T_Logo.png" style="height:150px" />
+        <!--TITLE-->
         <h1 class="display-4">Triviapp</h1>
-        <p>Play now as a guest or <a href="">login</a> to create Quizzes!</p><br />
-        <a asp-page="Quizzes/Browse" class="btn btn-primary" style="margin-top: 2em;">Play</a><br />
-        <a class="btn btn-primary" style="margin-top: 2em;">Login</a><br />
-        <a class="btn btn-primary" style="margin-top: 2em;">Register</a>
+        <!--DESC-->
+        <p>The online Trivia Quiz game!</p>
+        <br />
+        <p>Play now as a guest or <a href="">login</a> to create Quizzes!</p>
     </div>
+    <!--BUTTONS-->
+    <div id="landing-buttons">
+        <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Quizzes/Browse">Play</a>
+        <br />
+        <a class="btn btn-primary btn-lg" style="margin: 1em;">Login</a>
+        <br />
+        <a class="btn btn-primary btn-lg" style="margin: 1em;">Register</a>
+    </div>
+</div>

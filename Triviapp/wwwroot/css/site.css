@@ -73,7 +73,7 @@ body {
 #container {
     border: 1px solid black;
     border-radius: 6px;
-    box-shadow: 0 0 10px 2px;
+    filter: drop-shadow(0 5px 10px black);
     background-color: #fafafa;
     padding: 30px;
     width: 1000px;
@@ -136,11 +136,14 @@ body.wrong {
     color: white;
 }
 
-.controls {
+#controls {
     display: flex;
     justify-content: center;
     align-content: center;
-    padding: 40px;
+}
+
+.control-btn {
+    margin: 20px;
 }
 
 .hide {
