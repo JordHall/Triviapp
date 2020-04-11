@@ -4,11 +4,16 @@ const quitButton = document.getElementById("quit-btn") //QUIT BUTTON
 const questionContainer = document.getElementById("question-container") //QUESTION CONTAINER
 const questionElment = document.getElementById("question") //QUESTION TITLE
 const answerButtonsElment = document.getElementById("answer-buttons") //ANSWER BUTTONS
-const scoreSpan = document.getElementById("scoreSpan") // SCORE ELEMENT
+const completedContainer = document.getElementById("completed-container") //END GAME CONTAINER
+const scoreElement = document.getElementById("score") //SCORE ELEMENT
+const scoreTitle = document.getElementById("scoreTitle") //SCORE TITLE
+const controls = document.getElementById("controls") //CONTROLS
 
 let shuffledQuestions, currentQuestionIndex
 let score = 0
 
+//QUIT BUTTON
+quitButton.addEventListener("click", quitGame)
 //START QUIZ ON CLICK
 startButton.addEventListener("click", startQuiz)
 //NEXT QUESTION
@@ -22,7 +27,8 @@ function startQuiz() {
     score = 0
     updateScore()
     startButton.classList.add("hide")
-    shuffledQuestions = questionArray.sort(() => Math.random() - .5) //RANDOMLY SORT
+    completedContainer.classList.add("hide")
+    shuffledQuestions = questionArray.sort(() => Math.random() - .5) //RANDOMLY SORT QUESTIONS
     currentQuestionIndex = 0
     questionContainer.classList.remove("hide")
     setNextQuestion()
@@ -65,17 +71,24 @@ function selectAnswer(a) {
     const selectedButton = a.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
+    selectedButton.classList.add("selected")
     Array.from(answerButtonsElment.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
+        button.setAttribute("disabled", true)
     })
+    //CORRECT ANSWER
     if (correct) {
         score++
-        updateScore()
     }
+    //CARRY ON GAME
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove("hide")
     } else {
-        startButton.innerText = "Restart" //END GAME LOGIC
+        //END GAME LOGIC
+        completedContainer.classList.remove("hide")
+        updateScore()
+        questionContainer.classList.add("hide")
+        startButton.innerText = "Restart" 
         startButton.classList.remove("hide")
         quitButton.classList.remove("hide")
     }
@@ -99,5 +112,19 @@ function clearStatusClass(element) {
 
 //UPDATE SCORE
 function updateScore() {
-    scoreSpan.innerText = "Score: " + score.toString()
+    let totalScore = score.toString()
+    let numberOfQuestions = questionArray.length
+    scoreElement.innerText = totalScore + "/" + numberOfQuestions
+    if (score == numberOfQuestions) {
+        scoreTitle.innerText = "Congratulations! You perfectly scored:"
+    } else if (score > 0) {
+        scoreTitle.innerText = "Not bad! You scored:"
+    } else {
+        scoreTitle.innerText = "You suck... You scored:"
+    }
+}
+
+//QUIT GAME
+function quitGame() {
+    window.location.href = '/Quizzes/Browse'
 }

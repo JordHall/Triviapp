@@ -25,13 +25,16 @@
             @Html.DisplayFor(model => model.Quiz.DateAdded)
         </div>
     </div>
-    <!--SCORE TICKER-->
-    <span id="scoreSpan">Score: 0</span>
 </div>
 <hr />
 <!--QUIZ CONTAINER-->
 <div class="row question-row text-lg-center">
     <div id="container" class="bg-dark text-white">
+        <!--END SCREEN-->
+        <div id="completed-container" class="hide">
+            <h2 id="scoreTitle"></h2>
+            <h1 id="score"></h1>
+        </div>
         <!--QUESTIONS-->
         <div id="question-container" class="hide">
             <div id="question">Question</div>
@@ -41,10 +44,6 @@
                 <button class="btn-answer"></button>
                 <button class="btn-answer"></button>
             </div>
-        </div>
-        <!--END SCREEN-->
-        <div id="completed-container" class="hide">
-            <h2 id="score">You scored: </h2>
         </div>
         <!--CONTROLS-->
         <div class="controls">
