@@ -7,24 +7,17 @@
 <!--QUIZ INFORMATION-->
 <div class="row">
     <div class="col-sm-11">
-        <!--TITLE-->
-        <h1>@Html.DisplayFor(model => model.Quiz.Title)</h1>
         <!--CATEGORY-->
         <div class="row">
-            <h3 style="margin-left: 20px;">
+            <h2>
                 <span class="badge badge-warning">
                     @Html.DisplayFor(model => model.Quiz.Category)
                 </span>
-            </h3>
+            </h2>
         </div>
-        <!--DATE ADDED-->
+        <!--TILE-->
         <div class="row">
-            <div class="col-2 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Quiz.DateAdded):
-            </div>
-            <div class="col-2">
-                @Html.DisplayFor(model => model.Quiz.DateAdded)
-            </div>
+            <h1>@Html.DisplayFor(model => model.Quiz.Title)</h1>
         </div>
     </div>
     <!--QUIT-->
