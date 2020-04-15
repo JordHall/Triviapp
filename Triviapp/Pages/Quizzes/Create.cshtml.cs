@@ -44,8 +44,7 @@ namespace Triviapp
                 return Page();
             }
 
-            //Quiz date validation success
-            //Binds current date
+            //BINDS CURRENT DATE
             Quiz.DateAdded = DateTime.Today;
             _context.Quizzes.Add(Quiz);
             await _context.SaveChangesAsync();

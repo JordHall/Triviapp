@@ -6,8 +6,6 @@
 }
 
 <h1>Register</h1>
-
-<h4>Account</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,25 +21,22 @@
                 <input asp-for="Account.Password" class="form-control" />
                 <span asp-validation-for="Account.Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Account.Score" class="control-label"></label>
-                <input asp-for="Account.Score" class="form-control" />
-                <span asp-validation-for="Account.Score" class="text-danger"></span>
-            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Account.Visibility" /> @Html.DisplayNameFor(model => model.Account.Visibility)
+                    <input class="form-check-input" asp-for="Account.Visibility" checked /> I want my profile public
                 </label>
+                <span class="badge badge-info">Other users will be able to see your profile</span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Register" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="/Index">Back to List</a>
 </div>
 
 @section Scripts {

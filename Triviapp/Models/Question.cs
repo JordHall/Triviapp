@@ -10,7 +10,6 @@ namespace Triviapp.Models
     {
         [Key]
         public int ID { get; set; }
-        
         [Display(Name = "Question")]
         [Required]
         public string Title { get; set; }

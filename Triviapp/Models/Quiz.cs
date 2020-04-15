@@ -17,7 +17,6 @@ namespace Triviapp.Models
         [Required]
         public string Category { get; set; }
         public IList<Question> Questions { get; set; }
-
         [DataType(DataType.Date)]
         [Display(Name = "Date Added")]
         public DateTime DateAdded { get; set; }
