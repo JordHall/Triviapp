@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Triviapp.Models;
@@ -24,17 +25,30 @@ namespace Triviapp
         [BindProperty]
         public Account Account { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Accounts.Add(Account);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("/Quizzes/Browse");
+            var storedAccount = _context.Accounts.SingleOrDefault(a => a.Username.Equals(Account.Username));
+            if (storedAccount != null)
+            {
+                if (BCrypt.Net.BCrypt.Verify(Account.Password, storedAccount.Password))
+                {
+                    HttpContext.Session.SetString("username", Account.Username);
+                    return RedirectToPage("/Quizzes/Browse");
+                }
+                else
+                {
+                    return Page();
+                }
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }

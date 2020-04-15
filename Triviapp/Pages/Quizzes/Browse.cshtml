@@ -1,6 +1,6 @@
 ﻿@page
 @model Triviapp.BrowseModel
-
+@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Quizzes";
 }
@@ -15,6 +15,8 @@
         <a class="btn btn-primary" asp-page="Create">Create</a>
     </div>
 </div>
+
+@*Hello @HttpContext.Session.GetString("username")*@
 
 <!--QUIZZES TABLE-->
 <table class="table table-dark table-hover">
