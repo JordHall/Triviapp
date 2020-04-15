@@ -36,8 +36,10 @@ namespace Triviapp
                 return Page();
             }
 
+            Account.Score = 0; //INITIALISE SCORE
+            Account.Password = BCrypt.Net.BCrypt.HashPassword(Account.Password); //HASH PASSWORD WITH BCRYPT
             _context.Accounts.Add(Account);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();//UPDATE DATABASE
 
             return RedirectToPage("/Quizzes/Browse");
         }
