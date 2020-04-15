@@ -24,7 +24,7 @@ namespace Triviapp.Data
             modelBuilder.Entity<Quiz>().ToTable("Quiz");
             modelBuilder.Entity<Question>().ToTable("Question");
             modelBuilder.Entity<Answer>().ToTable("Answer");
-            modelBuilder.Entity<Account>().ToTable("Account");
+            modelBuilder.Entity<Account>().ToTable("Account").HasIndex(u => u.Username).IsUnique(); //ENSURES UNIQUE USERNAMES
         }
     }
 }

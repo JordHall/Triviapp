@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,13 +36,19 @@ namespace Triviapp
             {
                 return Page();
             }
-
-            Account.Score = 0; //INITIALISE SCORE
-            Account.Password = BCrypt.Net.BCrypt.HashPassword(Account.Password); //HASH PASSWORD WITH BCRYPT
-            _context.Accounts.Add(Account);
-            await _context.SaveChangesAsync();//UPDATE DATABASE
-
-            return RedirectToPage("/Quizzes/Browse");
+            try
+            {
+                Account.Score = 0; //INITIALISE SCORE
+                Account.Password = BCrypt.Net.BCrypt.HashPassword(Account.Password); //HASH PASSWORD WITH BCRYPT
+                _context.Accounts.Add(Account);
+                await _context.SaveChangesAsync();//UPDATE DATABASE
+                HttpContext.Session.SetString("username", Account.Username);
+                return RedirectToPage("/Quizzes/Browse");
+            }
+            catch
+            {
+                return Page();
+            }
         }
     }
 }
