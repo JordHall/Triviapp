@@ -8,9 +8,11 @@ namespace Triviapp.Models
 {
     public class Question
     {
+        [Key]
         public int ID { get; set; }
         
         [Display(Name = "Question")]
+        [Required]
         public string Title { get; set; }
         public IList<Answer> Answers { get; set; }
         public int QuizID { get; set; }
