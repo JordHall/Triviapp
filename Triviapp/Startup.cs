@@ -25,8 +25,11 @@ namespace Triviapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //RAZOR PAGES
             services.AddRazorPages();
-
+            //SESSIONS
+            services.AddSession();
+            //DATABASE
             services.AddDbContext<TriviappContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("TriviappContext")));
         }
@@ -44,18 +47,20 @@ namespace Triviapp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            //HTTP
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //ROUTING
             app.UseRouting();
-
+            //AUTHORIZATION
             app.UseAuthorization();
-
+            //ENDPOINTS
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
+            //SESSIONS
+            app.UseSession();
         }
     }
 }
