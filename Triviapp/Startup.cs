@@ -54,13 +54,13 @@ namespace Triviapp
             app.UseRouting();
             //AUTHORIZATION
             app.UseAuthorization();
+            //SESSIONS
+            app.UseSession();
             //ENDPOINTS
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });
-            //SESSIONS
-            app.UseSession();
         }
     }
 }
