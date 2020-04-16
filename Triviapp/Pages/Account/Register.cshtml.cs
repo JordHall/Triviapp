@@ -38,6 +38,15 @@ namespace Triviapp
             }
             try
             {
+                IList<Account> Accounts = _context.Accounts.ToList();
+                foreach (var account in Accounts)
+                {
+                    if (account.Username == Account.Username)
+                    {
+                        return Page();
+                    }
+                }
+
                 Account.Score = 0; //INITIALISE SCORE
                 Account.Password = BCrypt.Net.BCrypt.HashPassword(Account.Password); //HASH PASSWORD WITH BCRYPT
                 _context.Accounts.Add(Account);

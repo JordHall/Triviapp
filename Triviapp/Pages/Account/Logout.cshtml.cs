@@ -12,8 +12,7 @@ namespace Triviapp
         public IActionResult OnGet()
         {
             HttpContext.Session.Remove("username");
-            System.Threading.Thread.Sleep(2000);
-            return RedirectToPage("/Quizzes/Browse");
+            return Page();
         }
     }
 }
