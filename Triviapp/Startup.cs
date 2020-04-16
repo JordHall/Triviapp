@@ -25,8 +25,20 @@ namespace Triviapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AUTHENTICATION
+            services.AddAuthentication("CookieAuth") //COOKIE FOR USERS
+                .AddCookie("CookieAuth", config =>
+                {
+                    config.Cookie.Name = "User.Cookie";
+                });
             //RAZOR PAGES
-            services.AddRazorPages();
+            services.AddRazorPages()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AuthorizePage("/Quizzes/Create"); //ONLY USERS CAN ACCESS THESE PAGES
+                    options.Conventions.AuthorizePage("/Account/Profile");
+                    options.Conventions.AuthorizePage("/Account/Logout");
+                });
             //SESSIONS
             services.AddSession();
             //DATABASE
@@ -52,6 +64,8 @@ namespace Triviapp
             app.UseStaticFiles();
             //ROUTING
             app.UseRouting();
+            //AUTHENTICATION
+            app.UseAuthentication();
             //AUTHORIZATION
             app.UseAuthorization();
             //SESSIONS

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -52,6 +54,14 @@ namespace Triviapp
                 _context.Accounts.Add(Account);
                 await _context.SaveChangesAsync();//UPDATE DATABASE
                 HttpContext.Session.SetString("username", Account.Username);
+                var userClaims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.Name, Account.Username),
+                        new Claim("Triviapp","This is a user")
+                    };
+                var userIdentity = new ClaimsIdentity(userClaims, "User Identity");
+                var userPrincipal = new ClaimsPrincipal(userIdentity);
+                await HttpContext.SignInAsync(userPrincipal);
                 return RedirectToPage("/Quizzes/Browse");
             }
             catch
