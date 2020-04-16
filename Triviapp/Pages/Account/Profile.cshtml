@@ -1,0 +1,42 @@
+﻿@page
+@model Triviapp.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>Profile</h1>
+<div class="row">
+    <div class="col-1 font-weight-bold">
+        User: 
+    </div>
+    <div class="col-1">
+        @Model.Account.Username
+    </div>
+</div>
+<div class="row">
+    <div class="col-1 font-weight-bold">
+        Score:
+    </div>
+    <div class="col-1">
+        @Model.Account.Score
+    </div>
+</div>
+<div class="row">
+    <div class="col-1">
+        @if (Model.Account.Visibility == true)
+        {
+            @:This profile is public
+        }
+        else
+        {
+            @:This profile is private
+        }
+    </div>
+    <div class="col-1">
+        <form method="post" asp-page="profile">
+            Change visibility
+            <input asp-for="@Model.Account.Visibility" />
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+</div>
