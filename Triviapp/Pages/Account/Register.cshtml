@@ -4,41 +4,31 @@
 @{
     ViewData["Title"] = "Register";
 }
-
-<h1>Register</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Account.Username" class="control-label"></label>
-                <input asp-for="Account.Username" class="form-control" />
-                <span asp-validation-for="Account.Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Account.Password" class="control-label"></label>
-                <input asp-for="Account.Password" class="form-control" type="password" />
-                <span asp-validation-for="Account.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Account.Visibility" checked /> I want my profile public
-                </label>
-                <span class="badge badge-info">Other users will be able to see your profile</span>
-            </div>
-            <br />
-            <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="text-center" style="max-width: 300px; min-width: 100px; margin: 0 auto; margin-top: 100px;">
+    <h1>Register</h1>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Account.Username" class="control-label"></label>
+            <input asp-for="Account.Username" class="form-control" />
+            <span asp-validation-for="Account.Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Account.Password" class="control-label"></label>
+            <input asp-for="Account.Password" class="form-control" type="password" />
+            <span asp-validation-for="Account.Password" class="text-danger"></span>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Account.Visibility" checked /> I want my profile public
+            </label>
+            <span class="badge badge-warning">You will be visible on public leaderboards</span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Register" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-page="/Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -3,40 +3,29 @@
 @{
     ViewData["Title"] = "Profile";
 }
+<div class="text-center" style="margin: 0 auto; margin-top: 100px;"">
+    <h1>@Model.Account.Username</h1>
+    <div id="profileContainer">
+        <h2>Score:</h2>
+        <h1>@Model.Account.Score</h1>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-4 d-flex">
+            <div class="row d-flex justify-content-center">
+                @if (Model.Account.Visibility == true)
+                {
+                    @:This profile is public
+                }
+                else
+                {
+                    @:This profile is private
+                }
+            </div>
+            @*<form method="post" asp-page="profile">
+                <input asp-for="@Model.Account.Visibility" />
+                <input type="submit" value="Update" />
+            </form>*@
+        </div>
+    </div>
+</div>
 
-<h1>Profile</h1>
-<div class="row">
-    <div class="col-1 font-weight-bold">
-        User: 
-    </div>
-    <div class="col-1">
-        @Model.Account.Username
-    </div>
-</div>
-<div class="row">
-    <div class="col-1 font-weight-bold">
-        Score:
-    </div>
-    <div class="col-1">
-        @Model.Account.Score
-    </div>
-</div>
-<div class="row">
-    <div class="col-1">
-        @if (Model.Account.Visibility == true)
-        {
-            @:This profile is public
-        }
-        else
-        {
-            @:This profile is private
-        }
-    </div>
-    <div class="col-1">
-        <form method="post" asp-page="profile">
-            Change visibility
-            <input asp-for="@Model.Account.Visibility" />
-            <input type="submit" value="Update" />
-        </form>
-    </div>
-</div>
