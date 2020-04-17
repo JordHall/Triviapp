@@ -12,9 +12,8 @@ namespace Triviapp
     {
         public IActionResult OnGet()
         {
-            HttpContext.Session.Remove("username");
             HttpContext.SignOutAsync();
-            return Page();
+            return RedirectToPage("/Index");
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Triviapp
         public Account Account { get; set; }
         public void OnGet()
         {
-            var Username = HttpContext.Session.GetString("username");
+            var Username = HttpContext.User.Identity.Name;
             Account = _context.Accounts.SingleOrDefault(a => a.Username.Equals(Username));
         }
 

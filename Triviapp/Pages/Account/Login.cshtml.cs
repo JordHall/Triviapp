@@ -39,7 +39,6 @@ namespace Triviapp
             {
                 if (BCrypt.Net.BCrypt.Verify(Account.Password, storedAccount.Password))
                 {
-                    HttpContext.Session.SetString("username", Account.Username);
                     var userClaims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.Name, Account.Username),

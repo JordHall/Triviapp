@@ -53,7 +53,6 @@ namespace Triviapp
                 Account.Password = BCrypt.Net.BCrypt.HashPassword(Account.Password); //HASH PASSWORD WITH BCRYPT
                 _context.Accounts.Add(Account);
                 await _context.SaveChangesAsync();//UPDATE DATABASE
-                HttpContext.Session.SetString("username", Account.Username);
                 var userClaims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.Name, Account.Username),
