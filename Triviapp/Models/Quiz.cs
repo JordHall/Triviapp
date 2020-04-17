@@ -20,5 +20,7 @@ namespace Triviapp.Models
         [DataType(DataType.Date)]
         [Display(Name = "Date Added")]
         public DateTime DateAdded { get; set; }
+        public int AccountID { get; set; }
+        public Account Account { get; set; }
     }
 }

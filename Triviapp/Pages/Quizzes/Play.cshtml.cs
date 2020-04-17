@@ -27,6 +27,9 @@ namespace Triviapp
             //Get Quiz with the passed ID and store locally
             Quiz = await _context.Quizzes.FirstOrDefaultAsync(m => m.ID == id);
 
+            //Get Account with the Account ID in the Quiz
+            Quiz.Account = await _context.Accounts.FirstOrDefaultAsync(a => a.ID == Quiz.AccountID);
+
             //Get the Questions from this Quiz and store into its list
             Quiz.Questions = await _context.Questions.Where(q => q.QuizID == id).ToListAsync();
 

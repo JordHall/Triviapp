@@ -31,6 +31,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Quiz[0].DateAdded)
             </th>
+            <th>
+                Creator
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -49,6 +52,10 @@
             <!--DATE ADDED-->
             <td class="align-middle">
                 @Html.DisplayFor(modelItem => item.DateAdded)
+            </td>
+            <!--USER-->
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.Account.Username)
             </td>
             <!--UTILITY BUTTONS-->
             <td>

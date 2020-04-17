@@ -20,6 +20,10 @@ namespace Triviapp
         public async Task OnGetAsync()
         {
             Quiz = await _context.Quizzes.ToListAsync();
+            foreach (var quiz in Quiz)
+            {
+                quiz.Account = await _context.Accounts.FirstOrDefaultAsync(a => a.ID == quiz.AccountID);
+            }
         }
     }
 }

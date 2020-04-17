@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -42,6 +43,12 @@ namespace Triviapp
 
             //BINDS CURRENT DATE
             Quiz.DateAdded = DateTime.Today;
+            //GETS ACCOUNT ID FROM USERNAME
+            string Username = HttpContext.User.Identity.Name.ToString();
+            var account = _context.Accounts.Where(a => a.Username == Username).FirstOrDefault();
+            //BINDS ACCOUNT ID TO QUIZ
+            Quiz.AccountID = account.ID;
+
             _context.Quizzes.Add(Quiz);
             await _context.SaveChangesAsync();
 
