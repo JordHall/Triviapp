@@ -1,8 +1,9 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Triviapp.Models;
 
 namespace Triviapp
@@ -20,15 +21,7 @@ namespace Triviapp
         public Account Account { get; set; }
         public void OnGet()
         {
-            var Username = HttpContext.User.Identity.Name;
-            Account = _context.Accounts.SingleOrDefault(a => a.Username.Equals(Username));
-        }
-
-        public IActionResult OnPost()
-        {
-            _context.Entry(Account).State = EntityState.Modified;
-            _context.SaveChanges();
-            return RedirectToPage("Profile");
+            Account = _context.Accounts.SingleOrDefault(a => a.Username.Equals(HttpContext.User.Identity.Name)); //GET ACCOUNT FROM DATABASE
         }
     }
 }

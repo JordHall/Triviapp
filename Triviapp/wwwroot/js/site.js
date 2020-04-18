@@ -24,7 +24,7 @@ nextButton.addEventListener("click", () => {
 //START QUIZ
 function startQuiz() {
     score = 0
-    updateScore()
+    //updateScore()
     startButton.classList.add("hide")
     completedContainer.classList.add("hide")
     shuffledQuestions = questionArray.sort(() => Math.random() - .5) //RANDOMLY SORT QUESTIONS

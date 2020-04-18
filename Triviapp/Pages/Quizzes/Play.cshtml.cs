@@ -17,6 +17,7 @@ namespace Triviapp
         }
 
         public Quiz Quiz { get; set; }
+        public Account PlayingAccount { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,6 +30,12 @@ namespace Triviapp
 
             //Get Account with the Account ID in the Quiz
             Quiz.Account = await _context.Accounts.FirstOrDefaultAsync(a => a.ID == Quiz.AccountID);
+
+            //Get current players Account if they have one
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                PlayingAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
+            }
 
             //Get the Questions from this Quiz and store into its list
             Quiz.Questions = await _context.Questions.Where(q => q.QuizID == id).ToListAsync();
@@ -44,6 +51,12 @@ namespace Triviapp
                 return NotFound();
             }
             return Page();
+        }
+
+        public void UpdateScore(int score)
+        {
+            PlayingAccount.Score += score;
+            _context.SaveChanges();
         }
     }
 }
