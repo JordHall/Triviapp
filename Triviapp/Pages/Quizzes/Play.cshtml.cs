@@ -18,7 +18,6 @@ namespace Triviapp
 
         public Quiz Quiz { get; set; }
         public Account PlayingAccount { get; set; }
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -53,10 +52,15 @@ namespace Triviapp
             return Page();
         }
 
-        public void UpdateScore(int score)
+        public async Task<IActionResult> OnPostUpdateScoreAsync(int score)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                PlayingAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
+            }
             PlayingAccount.Score += score;
             _context.SaveChanges();
+            return RedirectToPage("Browse");
         }
     }
 }
