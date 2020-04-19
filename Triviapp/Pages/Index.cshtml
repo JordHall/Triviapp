@@ -19,9 +19,12 @@
     <!--BUTTONS-->
     <div id="landing-buttons">
         <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Quizzes/Browse">Play</a>
-        <br />
-        <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Account/Login">Login</a>
-        <br />
-        <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Account/Register">Register</a>
-    </div>
+        @if (!HttpContext.User.Identity.IsAuthenticated)
+        {
+            <br />
+            <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Account/Login">Login</a>
+            <br />
+            <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Account/Register">Register</a>
+        }
+        </div>
 </div>
