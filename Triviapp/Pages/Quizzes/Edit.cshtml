@@ -1,0 +1,50 @@
+﻿@page
+@model Triviapp.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Quiz.ID" />
+            <div class="form-group">
+                <label asp-for="Quiz.Title" class="control-label"></label>
+                <input asp-for="Quiz.Title" class="form-control" />
+                <span asp-validation-for="Quiz.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.Category" class="control-label"></label>
+                <input asp-for="Quiz.Category" class="form-control" />
+                <span asp-validation-for="Quiz.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.DateAdded" class="control-label"></label>
+                <input asp-for="Quiz.DateAdded" class="form-control" />
+                <span asp-validation-for="Quiz.DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quiz.AccountID" class="control-label"></label>
+                <select asp-for="Quiz.AccountID" class="form-control" asp-items="ViewBag.AccountID"></select>
+                <span asp-validation-for="Quiz.AccountID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
