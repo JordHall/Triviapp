@@ -18,13 +18,15 @@
     </div>
     <!--BUTTONS-->
     <div id="landing-buttons">
-        <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Quizzes/Browse">Play</a>
+        <a class="btn btn-primary btn-lg" style="margin: 0.5em;" asp-page="Quizzes/Browse">Play</a>
+        <br />
+        <a class="btn btn-primary btn-lg" style="margin: 0.5em;" asp-page="Leaderboard">Leaderboard</a>
         @if (!HttpContext.User.Identity.IsAuthenticated)
         {
             <br />
-            <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Account/Login">Login</a>
+            <a class="btn btn-primary btn-lg" style="margin: 0.5em;" asp-page="Account/Login">Login</a>
             <br />
-            <a class="btn btn-primary btn-lg" style="margin: 1em;" asp-page="Account/Register">Register</a>
+            <a class="btn btn-primary btn-lg" style="margin: 0.5em;" asp-page="Account/Register">Register</a>
         }
-        </div>
+    </div>
 </div>
