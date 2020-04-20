@@ -31,6 +31,8 @@ namespace Triviapp
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AuthorizePage("/Quizzes/Create"); //ONLY USERS CAN ACCESS THESE PAGES
+                    options.Conventions.AuthorizePage("/Quizzes/Edit");
+                    options.Conventions.AuthorizePage("/Quizzes/Delete");
                     options.Conventions.AuthorizePage("/Account/Profile");
                     options.Conventions.AuthorizePage("/Account/Logout");
                 });

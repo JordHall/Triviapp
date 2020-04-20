@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Quizzes";
+    bool IsSignedIn = HttpContext.User.Identity.IsAuthenticated;
 }
 <!--TITLE CONTAINER-->
 <div class="row">
@@ -12,7 +13,7 @@
     </div>
     <div class="col-md-1">
         <!--CREATE-->
-        @if (HttpContext.User.Identity.IsAuthenticated)
+        @if (IsSignedIn)
         {
             <a class="btn btn-primary" asp-page="Create">Create</a>
         }
@@ -59,9 +60,11 @@
             </td>
             <!--UTILITY BUTTONS-->
             <td>
-                <a class="btn btn-primary float-right" style="margin-left: 10px;" asp-page="Play" asp-route-id="@item.ID">Play</a>
-                <a class="btn btn-secondary float-right" style="margin-left: 10px;" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
-                <a class="btn btn-danger float-right" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a class="btn btn-primary float-right" style="margin-left: 10px;" asp-page="./Play" asp-route-id="@item.ID">Play</a>
+                @if (IsSignedIn && item.AccountID == Model.Account.ID)
+                {
+                    <a class="btn btn-secondary float-right" style="margin-left: 10px;" asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                }
             </td>
         </tr>
         }

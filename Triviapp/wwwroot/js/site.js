@@ -8,7 +8,7 @@ const completedContainer = document.getElementById("completed-container") //END 
 const scoreElement = document.getElementById("score") //SCORE ELEMENT
 const scoreTitle = document.getElementById("scoreTitle") //SCORE TITLE
 
-const scoreBtn = document.getElementById("scoreBtn");
+const scoreValue = document.getElementById("scoreValue");
 
 
 let shuffledQuestions, currentQuestionIndex
@@ -27,7 +27,6 @@ nextButton.addEventListener("click", () => {
 //START QUIZ
 function startQuiz() {
     score = 0
-    //updateScore()
     startButton.classList.add("hide")
     completedContainer.classList.add("hide")
     shuffledQuestions = questionArray.sort(() => Math.random() - .5) //RANDOMLY SORT QUESTIONS
@@ -89,7 +88,7 @@ function selectAnswer(a) {
         //END GAME LOGIC
         completedContainer.classList.remove("hide")
         updateScore()
-        scoreBtn.setAttribute("asp-route-id", score)
+        scoreValue.value = score
         questionContainer.classList.add("hide")
         startButton.innerText = "Restart" 
         startButton.classList.remove("hide")

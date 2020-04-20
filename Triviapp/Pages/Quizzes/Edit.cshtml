@@ -4,10 +4,14 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
-
-<h4>Quiz</h4>
+<div class="row">
+    <div class="col-11">
+        <h1>Edit: @Model.Quiz.Title</h1>
+    </div>
+    <div class="col-1">
+        <a class="btn btn-primary" asp-page="./Browse">Back</a>
+    </div>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -40,9 +44,8 @@
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.Quiz.ID">Delete</a>
 </div>
 
 @section Scripts {

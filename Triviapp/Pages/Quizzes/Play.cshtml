@@ -56,9 +56,14 @@
     </div>
 </div>
 <!--<a class="btn btn-primary" asp-page-handler="UpdateScore" asp-route-id="" id="scoreBtn">Update score</a>-->
-<form asp-page-handler="UpdateScore" asp-route-id="" id="scoreBtn" method="post">
+<form method="post">
+    <input type="hidden" asp-for="PlayingAccount.Score" id="scoreValue" />
+    <input type="hidden" asp-for="PlayingAccount.ID" />
+    <input type="hidden" asp-for="PlayingAccount.Username" />
+    <input type="hidden" asp-for="PlayingAccount.Password" />
     <button class="btn btn-primary">Test update</button>
 </form>
+@Model.ErrorMsg
 <!--SCRIPT FOR EXTRACTING C# MODEL DATA INTO JAVASCRIPT 2D ARRAY-->
 <script>
         var True = true, False = false;

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,9 +16,9 @@ namespace Triviapp
         {
             _context = context;
         }
-
         public Quiz Quiz { get; set; }
         public Account PlayingAccount { get; set; }
+        public string ErrorMsg;
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -52,15 +53,40 @@ namespace Triviapp
             return Page();
         }
 
-        public async Task<IActionResult> OnPostUpdateScoreAsync(int score)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
+            if (!ModelState.IsValid)
             {
-                PlayingAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
+                return Page();
             }
-            PlayingAccount.Score += score;
-            _context.SaveChanges();
+            //Account PlayingAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
+            //PlayingAccount.Score +=;
+            //_context.Attach(PlayingAccount).State = EntityState.Modified;
+            //_context.Accounts.Update(PlayingAccount);
+            _context.Attach(PlayingAccount).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AccountExists(this.PlayingAccount.ID))
+                {
+                    return base.NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
             return RedirectToPage("Browse");
+        }
+
+        private bool AccountExists(int id)
+        {
+            return _context.Accounts.Any(a => a.ID == id);
         }
     }
 }
