@@ -8,7 +8,7 @@ const completedContainer = document.getElementById("completed-container") //END 
 const scoreElement = document.getElementById("score") //SCORE ELEMENT
 const scoreTitle = document.getElementById("scoreTitle") //SCORE TITLE
 
-const scoreValue = document.getElementById("scoreValue");
+const scoreValue = document.getElementById("score");
 
 
 let shuffledQuestions, currentQuestionIndex

@@ -16,8 +16,8 @@ namespace Triviapp
         {
             _context = context;
         }
-        public Quiz Quiz { get; set; }
-        public Account PlayingAccount { get; set; }
+        public Quiz Quiz { get; set; }  
+        public Account Account { get; set; }
         public string ErrorMsg;
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -34,7 +34,7 @@ namespace Triviapp
             //Get current players Account if they have one
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                PlayingAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
+                Account = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
             }
 
             //Get the Questions from this Quiz and store into its list
@@ -59,19 +59,15 @@ namespace Triviapp
             {
                 return Page();
             }
-            //Account PlayingAccount = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
-            //PlayingAccount.Score +=;
-            //_context.Attach(PlayingAccount).State = EntityState.Modified;
-            //_context.Accounts.Update(PlayingAccount);
-            _context.Attach(PlayingAccount).State = EntityState.Modified;
-
+            
             try
             {
+                _context.Attach(Account).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(this.PlayingAccount.ID))
+                if (!AccountExists(this.Account.ID))
                 {
                     return base.NotFound();
                 }
