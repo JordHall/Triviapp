@@ -25,6 +25,7 @@ namespace Triviapp
 
         [BindProperty]
         public Account Account { get; set; }
+        public string ErrorMsg;
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -32,31 +33,41 @@ namespace Triviapp
             {
                 return Page();
             }
-
-            var storedAccount = _context.Accounts.SingleOrDefault(a => a.Username.Equals(Account.Username));
-            if (storedAccount != null)
-            {
-                if (BCrypt.Net.BCrypt.Verify(Account.Password, storedAccount.Password))
-                {
-                    var userClaims = new List<Claim>()
-                    {
-                        new Claim(ClaimTypes.Name, Account.Username),
-                        new Claim("Triviapp","This is a user")
-                    };
-                    var userIdentity = new ClaimsIdentity(userClaims, "User Identity");
-                    var userPrincipal = new ClaimsPrincipal(userIdentity);
-                    await HttpContext.SignInAsync(userPrincipal);
-                    return RedirectToPage("/Quizzes/Browse");
+            try
+            {   //TRY FIND ACCOUNT FROM USERNAME INPUT
+                var storedAccount = _context.Accounts.SingleOrDefault(a => a.Username.Equals(Account.Username));
+                if (storedAccount != null)
+                {   //TRY DECRYPT & VERIFY PASSWORD
+                    if (BCrypt.Net.BCrypt.Verify(Account.Password, storedAccount.Password))
+                    {   //CREATE COOKIE
+                        var userClaims = new List<Claim>()
+                        {
+                            new Claim(ClaimTypes.Name, Account.Username),
+                            new Claim("Triviapp","This is a user")
+                        };
+                        var userIdentity = new ClaimsIdentity(userClaims, "User Identity");
+                        var userPrincipal = new ClaimsPrincipal(userIdentity);
+                        await HttpContext.SignInAsync(userPrincipal);
+                        return RedirectToPage("/Quizzes/Browse");
+                    }
+                    else
+                    {   //PASSWORD INCORRECT
+                        ErrorMsg = "The password is incorrect";
+                        return Page();
+                    }
                 }
                 else
-                {
+                {   //ACCOUNT DOES NOT EXIST
+                    ErrorMsg = "This Account does not exist";
                     return Page();
                 }
             }
-            else
-            {
+            catch
+            {   //ERROR ACCESSING DATABASE
+                ErrorMsg = "An error occured, please try again later";
                 return Page();
             }
+
         }
     }
 }

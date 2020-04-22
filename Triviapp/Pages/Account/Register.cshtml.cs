@@ -26,6 +26,7 @@ namespace Triviapp
 
         [BindProperty]
         public Account Account { get; set; }
+        public string ErrorMsg;
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -36,22 +37,23 @@ namespace Triviapp
                 return Page();
             }
             try
-            {
+            {   //GRAB ACCOUNTS
                 IList<Account> Accounts = _context.Accounts.ToList();
                 foreach (var account in Accounts)
-                {
+                {   //ERROR IF USERNAME NOT UNIQUE
                     if (account.Username == Account.Username)
                     {
+                        ErrorMsg = "Username already exists";
                         return Page();
                     }
                 }
-
-                Account.Score = 0; //INITIALISE SCORE
+                //INITIALISE SCORE
+                Account.Score = 0;
                 Account.Password = BCrypt.Net.BCrypt.HashPassword(Account.Password); //HASH PASSWORD WITH BCRYPT
                 _context.Accounts.Add(Account);
-                await _context.SaveChangesAsync();//UPDATE DATABASE
+                await _context.SaveChangesAsync(); //UPDATE DATABASE
                 var userClaims = new List<Claim>()
-                    {
+                    {   //CREATE COOKIE
                         new Claim(ClaimTypes.Name, Account.Username),
                         new Claim("Triviapp","This is a user")
                     };
@@ -61,7 +63,8 @@ namespace Triviapp
                 return RedirectToPage("/Quizzes/Browse");
             }
             catch
-            {
+            {   //ERROR ACCESSING DATABASE
+                ErrorMsg = "An error occurred, please try again later";
                 return Page();
             }
         }
