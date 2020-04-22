@@ -16,9 +16,8 @@ namespace Triviapp
         {
             _context = context;
         }
-        public Quiz Quiz { get; set; }  
+        public Quiz Quiz { get; set; }
         public Account Account { get; set; }
-        public string ErrorMsg;
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -51,38 +50,6 @@ namespace Triviapp
                 return NotFound();
             }
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            
-            try
-            {
-                _context.Attach(Account).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AccountExists(this.Account.ID))
-                {
-                    return base.NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("Browse");
-        }
-
-        private bool AccountExists(int id)
-        {
-            return _context.Accounts.Any(a => a.ID == id);
         }
     }
 }

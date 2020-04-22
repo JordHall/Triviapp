@@ -19,12 +19,17 @@ namespace Triviapp
         public IList<Quiz> Quiz { get;set; }
         public Account Account { get; set; }
         public async Task OnGetAsync()
-        {   //GET QUIZZES AND ACCOUNTS THAT ARE VISIBILE
+        {   
             try
             {
+                //Get current players Account if they have one
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    Account = await _context.Accounts.FirstOrDefaultAsync(a => a.Username.Equals(HttpContext.User.Identity.Name));
+                }
                 Quiz = await _context.Quizzes.ToListAsync();
                 foreach (var quiz in Quiz)
-                {
+                {   //GET QUIZZES AND ACCOUNTS THAT ARE VISIBILE
                     quiz.Account = await _context.Accounts.Where(a => a.Visibility == true).FirstOrDefaultAsync(a => a.ID == quiz.AccountID);
                 }
             }

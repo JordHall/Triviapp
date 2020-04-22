@@ -28,7 +28,7 @@ namespace Triviapp
             {
                 return NotFound();
             }
-
+            //RETREIVE QUIZ AND ASSOCIATED ACCOUNT
             Quiz = await _context.Quizzes
                 .Include(q => q.Account).FirstOrDefaultAsync(m => m.ID == id);
 
@@ -45,12 +45,12 @@ namespace Triviapp
             {
                 return NotFound();
             }
-
+            //RETREIVE QUIZ
             Quiz = await _context.Quizzes.FindAsync(id);
 
             if (Quiz != null)
             {
-                _context.Quizzes.Remove(Quiz);
+                _context.Quizzes.Remove(Quiz); //DELETE RECORD AND UPDATE
                 await _context.SaveChangesAsync();
             }
 

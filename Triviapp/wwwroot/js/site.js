@@ -8,9 +8,6 @@ const completedContainer = document.getElementById("completed-container") //END 
 const scoreElement = document.getElementById("score") //SCORE ELEMENT
 const scoreTitle = document.getElementById("scoreTitle") //SCORE TITLE
 
-const scoreValue = document.getElementById("score");
-
-
 let shuffledQuestions, currentQuestionIndex
 let score = 0
 
@@ -88,7 +85,6 @@ function selectAnswer(a) {
         //END GAME LOGIC
         completedContainer.classList.remove("hide")
         updateScore()
-        scoreValue.value = score
         questionContainer.classList.add("hide")
         startButton.innerText = "Restart" 
         startButton.classList.remove("hide")
