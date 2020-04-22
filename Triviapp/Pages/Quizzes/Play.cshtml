@@ -19,9 +19,12 @@
         <div class="row">
             <h1>@Html.DisplayFor(model => model.Quiz.Title)</h1>
         </div>
-        <div class="row">
-            <h3>Creator: @Model.Quiz.Account.Username</h3>
-        </div>
+        @if (Model.Quiz.Account.Visibility == true)
+        {
+            <div class="row">
+                <h3>Creator: @Model.Quiz.Account.Username</h3>
+            </div>
+        }
     </div>
     <!--QUIT-->
     <div class="col-1 float-right">
@@ -56,11 +59,11 @@
     </div>
 </div>
 <form method="post">
-    <input id="score" type="hidden" value="" name="score"/>
+    <input id="score" type="hidden" value="" name="score" />
     <button type="submit">Submit</button>
 </form>
-    <!--SCRIPT FOR EXTRACTING C# MODEL DATA INTO JAVASCRIPT 2D ARRAY-->
-    <script>
+<!--SCRIPT FOR EXTRACTING C# MODEL DATA INTO JAVASCRIPT 2D ARRAY-->
+<script>
         var True = true, False = false;
         let questionArray = [
             @foreach (var questionModel in Model.Quiz.Questions)
@@ -73,6 +76,6 @@
                     @:]
                 @:},
             }
-    ]
-    </script>
-    <script src="~/js/site.js" type="text/javascript"></script>
+        ]
+</script>
+<script src="~/js/site.js" type="text/javascript"></script>

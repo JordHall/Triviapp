@@ -23,7 +23,14 @@ namespace Triviapp
 
         public async Task OnGetAsync()
         {
-            Account = await _context.Accounts.OrderByDescending(a => a.Score).ToListAsync();
+            try
+            {   //GET VISIBLE ACCOUNTS AND SORT BY SCORE
+                Account = await _context.Accounts.Where(a => a.Visibility == true).OrderByDescending(a => a.Score).ToListAsync();
+            }
+            catch
+            {   //REDIRECT IF DATABASE FAILS TO LOAD
+                RedirectToPage("./Index");
+            }
         }
     }
 }
