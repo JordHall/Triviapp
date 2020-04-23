@@ -8,8 +8,15 @@ namespace Triviapp
     {
         public IActionResult OnGet()
         {
-            HttpContext.SignOutAsync();
-            return RedirectToPage("/Index");
+            try
+            {
+                HttpContext.SignOutAsync();
+                return RedirectToPage("/Index");
+            }
+            catch
+            {
+                return RedirectToPage("/Index");
+            }
         }
     }
 }
