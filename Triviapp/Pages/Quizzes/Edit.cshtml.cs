@@ -37,7 +37,7 @@ namespace Triviapp
             {
                 return NotFound();
             }
-           ViewData["AccountID"] = new SelectList(_context.Accounts, "ID", "Username");
+            ViewData["AccountID"] = new SelectList(_context.Accounts, "ID", "Username");
             return Page();
         }
 

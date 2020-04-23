@@ -19,8 +19,6 @@
     <!--BUTTONS-->
     <div id="landing-buttons">
         <a class="btn btn-primary btn-lg" style="margin: 0.5em;" asp-page="Quizzes/Browse">Play</a>
-        <br />
-        <a class="btn btn-primary btn-lg" style="margin: 0.5em;" asp-page="Leaderboard">Leaderboard</a>
         @if (!HttpContext.User.Identity.IsAuthenticated)
         {
             <br />
