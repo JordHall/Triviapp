@@ -3,10 +3,53 @@
 @{
     ViewData["Title"] = "Profile";
 }
-    <div class="text-center" style="margin: 0 auto; margin-top: 100px;" ">
-        <h1>@Model.Account.Username</h1>
-        <div id="profileContainer">
-            <h2>Score:</h2>
-            <h1>@Model.Account.Score</h1>
-        </div>
+<div class="text-center" style="margin: 0 auto; margin-top: 100px;" ">
+    <h1>@Model.Account.Username</h1>
+    <div id="profileContainer">
+        <h2>Score:</h2>
+        <h1>@Model.Account.Score</h1>
     </div>
+    <div id="quizContainer">
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Quiz
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Date Added
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var quiz in Model.Account.Quizzes)
+                {
+                <tr>
+                    <!--TITLE-->
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => quiz.Title)
+                    </td>
+                    <!--CATEGORY-->
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => quiz.Category)
+                    </td>
+                    <!--DATE ADDED-->
+                    <td class="align-middle">
+                        @Html.DisplayFor(modelItem => quiz.DateAdded)
+                    </td>
+                    <!--UTILITY BUTTONS-->
+                    <td>
+                        <a class="btn btn-danger float-right" style="margin-left: 10px;" asp-page="./Quizzes/Delete" asp-route-id="@quiz.ID">Delete</a>
+                        <a class="btn btn-secondary float-right" style="margin-left: 10px;" asp-page="./Quizzes/Edit" asp-route-id="@quiz.ID">Edit</a>
+                        <a class="btn btn-primary float-right" style="margin-left: 10px;" asp-page="./Quizzes/Play" asp-route-id="@quiz.ID">Play</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
