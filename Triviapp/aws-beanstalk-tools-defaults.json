@@ -4,7 +4,7 @@
     "profile" : "Jordan Hall",
     "region"  : "eu-west-2",
     "application" : "Triviapp",
-    "environment" : "Triviapp-prod",
+    "environment" : "Triviapp-env",
     "cname"       : "triviapp",
     "solution-stack" : "64bit Windows Server 2016 v2.5.2 running IIS 10.0",
     "environment-type" : "SingleInstance",
