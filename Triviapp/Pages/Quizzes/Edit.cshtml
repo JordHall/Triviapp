@@ -5,21 +5,21 @@
     ViewData["Title"] = "Edit";
 }
 <div class="row">
-    <div class="col-11">
-        <h1>Edit: @Model.Quiz.Title</h1>
+    <div class="col-sm-11">
+        <h1>Edit @Model.Quiz.Title</h1>
     </div>
-    <div class="col-1">
-        <a class="btn btn-primary" asp-page="./Browse">Back</a>
+    <div class="col-sm-1">
+        <h1><a class="btn btn-primary" asp-page="./Browse">Back</a></h1>
     </div>
 </div>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-6">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Quiz.ID" />
             <div class="form-group">
-                <label asp-for="Quiz.Title" class="control-label"></label>
+                Title
                 <input asp-for="Quiz.Title" class="form-control" />
                 <span asp-validation-for="Quiz.Title" class="text-danger"></span>
             </div>
@@ -28,24 +28,22 @@
                 <input asp-for="Quiz.Category" class="form-control" />
                 <span asp-validation-for="Quiz.Category" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group hide">
                 <label asp-for="Quiz.DateAdded" class="control-label"></label>
                 <input asp-for="Quiz.DateAdded" class="form-control" />
                 <span asp-validation-for="Quiz.DateAdded" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group hide">
                 <label asp-for="Quiz.AccountID" class="control-label"></label>
                 <select asp-for="Quiz.AccountID" class="form-control" asp-items="ViewBag.AccountID"></select>
                 <span asp-validation-for="Quiz.AccountID" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-top:1em;">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.Quiz.ID">Delete</a>
             </div>
         </form>
     </div>
-</div>
-<div>
-    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.Quiz.ID">Delete</a>
 </div>
 
 @section Scripts {
