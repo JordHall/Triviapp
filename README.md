@@ -1,6 +1,4 @@
 ![Triviapp Logo](https://i.imgur.com/SDX0gfq.png)
-# Triviapp
-A Trivia Web App built in ASP.NET
 
 # Installation
 1. Requires Visual Studio 2017/2019 @ https://visualstudio.microsoft.com/downloads/
